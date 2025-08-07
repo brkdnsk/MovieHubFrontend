@@ -27,7 +27,7 @@ public class Movie {
     private String description;
 
     @NotBlank(message="Film Yılı Boş Olamaz!")
-    @Size(min= 2, max= 50 , message = "Film yılı '${validatedValue}' {min} ve {max} aralığında olmalı!")
+    @Size(min= 2, max= 25 , message = "Film yılı '${validatedValue}' {min} ve {max} aralığında olmalı!")
     @Column(nullable = false, length = 50)
     private String releaseYear;
 
