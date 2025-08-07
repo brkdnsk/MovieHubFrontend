@@ -16,17 +16,17 @@ public class Movie {
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    @NotBlank(message="Filmin Adı Boş Olamaz!")
+    @NotBlank(message="Film Adı Boş Olamaz!")
     @Size(min= 2, max= 50 , message = "Film adı '${validatedValue}' {min} ve {max} aralığında olmalı!")
     @Column(nullable = false, length = 50)
     private String movieName;
 
-    @NotBlank(message="Filmin açıklaması Boş Olamaz!")
+    @NotBlank(message="Film Açıklaması Boş Olamaz!")
     @Size(min= 2, max= 300 , message = "Film açıklaması '${validatedValue}' {min} ve {max} aralığında olmalı!")
     @Column(nullable = false, length = 300)
     private String description;
 
-    @NotBlank(message="Filmin yılı Boş Olamaz!")
+    @NotBlank(message="Film Yılı Boş Olamaz!")
     @Size(min= 2, max= 50 , message = "Film yılı '${validatedValue}' {min} ve {max} aralığında olmalı!")
     @Column(nullable = false, length = 50)
     private String releaseYear;
@@ -34,12 +34,12 @@ public class Movie {
 
     private Double imdbRating;
 
-    @NotBlank(message="Filmin yapımcısı Boş Olamaz!")
+    @NotBlank(message="Film Yapımcısı Boş Olamaz!")
     @Size(min= 2, max= 25 , message = "Film yapımcısı '${validatedValue}' {min} ve {max} aralığında olmalı!")
     @Column(nullable = false, length = 25)
     private String producer;
 
-    @NotBlank(message="Filmin türü Boş Olamaz!")
+    @NotBlank(message="Film Türü Boş Olamaz!")
     @Size(min= 2, max= 30 , message = "Film türü '${validatedValue}' {min} ve {max} aralığında olmalı!")
     @Column(nullable = false, length = 30)
     private String genre;
