@@ -1,4 +1,5 @@
 package com.moviehub.MovieHub.domain;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import jakarta.validation.constraints.NotBlank;
@@ -25,10 +26,9 @@ public class Movie {
     @Size(min= 2, max= 300 , message = "Film açıklaması '${validatedValue}' {min} ve {max} aralığında olmalı!")
     @Column(nullable = false, length = 300)
     private String description;
-
-    @NotBlank(message="Film Yılı Boş Olamaz!")
-    @Size(min= 2, max= 25 , message = "Film yılı '${validatedValue}' {min} ve {max} aralığında olmalı!")
-    @Column(nullable = false, length = 50)
+//4 karakter ayarı json format araştır
+    @NotBlank(message = "Film yili bos olamaz!")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy")
     private String releaseYear;
 
 
