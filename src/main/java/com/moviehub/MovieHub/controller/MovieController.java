@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,8 +32,12 @@ public class MovieController {
     }
 
     @PostMapping
-    public ResponseEntity<Map<String,String>> createMovie(@Valid @RequestBody Movie movie){
-
+    public ResponseEntity<Map<String, String>> createMovie(@Valid @RequestBody Movie movie) {
+        movieService.createNewMovie(movie);
+        Map<String, String> map = new HashMap<>();
+        map.put("message", "Film basariyla eklendi");
+        map.put("status", "true");
+        return new ResponseEntity<>(map, HttpStatus.CREATED);
     }
 
 }
