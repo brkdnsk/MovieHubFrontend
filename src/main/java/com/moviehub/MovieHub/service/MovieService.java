@@ -15,7 +15,6 @@ public class MovieService {
     private MovieRepository movieRepository;
 
     public List<Movie> getAllMoives() {
-
         return movieRepository.findAll();
     }
 }
