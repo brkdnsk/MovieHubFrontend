@@ -40,4 +40,13 @@ public class MovieController {
         return new ResponseEntity<>(map, HttpStatus.CREATED);
     }
 
+    @PostMapping("/movies")
+    public ResponseEntity<Map<String, String>> createMovies(@Valid @RequestBody List<Movie> movie) {
+        movieService.createNewMovie(movies);
+        Map<String, String> map = new HashMap<>();
+        map.put("message", "Filmler basariyla eklendi");
+        map.put("status", "true");
+        //HttpStatus Code = 201
+        return new ResponseEntity<>(map, HttpStatus.CREATED);
+    }
 }
