@@ -1,6 +1,5 @@
 package com.moviehub.MovieHub.controller;
 
-
 import com.moviehub.MovieHub.domain.Movie;
 import com.moviehub.MovieHub.service.MovieService;
 import jakarta.validation.Valid;
@@ -40,13 +39,10 @@ public class MovieController {
         return new ResponseEntity<>(map, HttpStatus.CREATED);
     }
 
-    @PostMapping("/movies")
-    public ResponseEntity<Map<String, String>> createMovies(@Valid @RequestBody List<Movie> movie) {
-        movieService.createNewMovie(movies);
-        Map<String, String> map = new HashMap<>();
-        map.put("message", "Filmler basariyla eklendi");
-        map.put("status", "true");
-        //HttpStatus Code = 201
-        return new ResponseEntity<>(map, HttpStatus.CREATED);
-    }
+     @GetMapping("/{id}")
+     public ResponseEntity<Movie> getMovieById(@PathVariable("id") Long id) {
+         return ResponseEntity.ok(movieService.findMovie(id));
+     }
+
+
 }
