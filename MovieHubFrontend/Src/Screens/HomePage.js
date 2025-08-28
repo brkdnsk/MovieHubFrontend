@@ -4,7 +4,7 @@ import React from 'react'
 export default function HomePage() {
   return (
     <View>
-      <Text>HomePage</Text>
+      <Text>MovieHub</Text>
     </View>
   )
 }
