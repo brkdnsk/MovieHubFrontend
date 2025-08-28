@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+
+# Java / Maven (Backend)
+MovieHub/target/
+MovieHub/.idea/
+MovieHub/.project
+MovieHub/.classpath
+MovieHub/.settings/
+
+# React Native / Node (Frontend)
+MovieHubFrontend/node_modules/
+MovieHubFrontend/.metro-cache/
+MovieHubFrontend/.expo/
+MovieHubFrontend/.DS_Store
+
+# Android
+MovieHubFrontend/android/.gradle/
+MovieHubFrontend/android/.idea/
+MovieHubFrontend/android/local.properties
+MovieHubFrontend/android/app/build/
+MovieHubFrontend/android/build/
+
+# iOS
+MovieHubFrontend/ios/Pods/
+MovieHubFrontend/ios/build/
