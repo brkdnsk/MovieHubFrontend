@@ -5,6 +5,7 @@ import com.moviehub.MovieHub.service.MovieService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("movies")
+@RequestMapping("/movies")
 @CrossOrigin(origins = "http://localhost:5500")
 public class MovieController {
 
@@ -29,17 +30,29 @@ public class MovieController {
         return ResponseEntity.ok(movies);
         //new ResponseEntity(movies, HttpStatus.ACCEPTED);
     }
-
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, String>> createMovie(@Valid @RequestBody Movie movie) {
         movieService.createNewMovie(movie);
-        Map<String, String> map = new HashMap<>();
-        map.put("message", "Film basariyla eklendi");
-        map.put("status", "true");
-        return new ResponseEntity<>(map, HttpStatus.CREATED);
+        Map<String, String> res = new HashMap<>();
+        res.put("message", "Film başarıyla eklendi");
+        res.put("status", "true");
+        return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 
-     @GetMapping("/{id}")
+    @PostMapping("/bulk")
+    public ResponseEntity<Map<String, Object>> createMovies(@RequestBody List<@Valid Movie> movies) {
+        for (Movie m : movies) {
+            movieService.createNewMovie(m);
+        }
+        Map<String, Object> res = new HashMap<>();
+        res.put("message", movies.size() + " film başarıyla eklendi");
+        res.put("count", movies.size());
+        res.put("status", true);
+        return new ResponseEntity<>(res, HttpStatus.CREATED);
+    }
+
+
+    @GetMapping("/{id}")
      public ResponseEntity<Movie> getMovieById(@PathVariable("id") Long id) {
          return ResponseEntity.ok(movieService.findMovie(id));
      }
