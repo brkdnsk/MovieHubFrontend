@@ -25,3 +25,5 @@ MovieHubFrontend/android/build/
 MovieHubFrontend/ios/Pods/
 MovieHubFrontend/ios/build/
 
+.DS_Store
+**/.DS_Store
