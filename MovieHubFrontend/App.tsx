@@ -5,44 +5,60 @@
  * @format
  */
 
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import { StatusBar, StyleSheet, useColorScheme, View, Text } from 'react-native';
 import {
   SafeAreaProvider,
 } from 'react-native-safe-area-context';
-import HomePage from './Src/Screens/HomePage';
+import HomePage from './src/Screens/HomePage';
+import MovieDetails from './src/Screens/MovieDetails';
+import LoginPage from './src/Screens/LoginPage';
+import RegisterPage from './src/Screens/RegisterPage';
+import ProfilePage from './src/Screens/ProfilePage';
+import MyListPage from './src/Screens/MyListPage';
 import React from 'react';
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const ORANGE_DARK_THEME = {
   ...DarkTheme,
   colors: {
     ...DarkTheme.colors,
-    primary: '#ff7a1a',
-    background: '#0b0f17',
-    card: '#131a24',
+    primary: '#FF6B6B',
+    background: '#0a0a0a',
+    card: '#1a1a1a',
     text: '#ffffff',
-    border: '#1f2a3b',
-    notification: '#ff7a1a',
+    border: '#333333',
+    notification: '#FF6B6B',
   },
 };
 
-function HomeScreen() {
-  return <HomePage />;
+function HomeScreen({ navigation }) {
+  return <HomePage navigation={navigation} />;
 }
 
-function ExploreScreen() {
-  return <View style={styles.placeholder} />;
+
+function MyListScreen({ navigation }) {
+  return <MyListPage navigation={navigation} />;
 }
 
-function MyListScreen() {
-  return <View style={styles.placeholder} />;
+function ProfileScreen({ navigation }) {
+  return <ProfilePage navigation={navigation} />;
 }
 
-function ProfileScreen() {
-  return <View style={styles.placeholder} />;
+
+function HomeStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="HomeMain" component={HomeScreen} />
+      <Stack.Screen name="MovieDetails" component={MovieDetails} />
+      <Stack.Screen name="Login" component={LoginPage} />
+      <Stack.Screen name="Register" component={RegisterPage} />
+    </Stack.Navigator>
+  );
 }
 
 function App() {
@@ -55,18 +71,35 @@ function App() {
         <Tab.Navigator
           screenOptions={{
             headerShown: false,
-            tabBarActiveTintColor: '#ff7a1a',
-            tabBarInactiveTintColor: '#9aa4b2',
+            tabBarActiveTintColor: '#FF6B6B',
+            tabBarInactiveTintColor: '#888888',
             tabBarStyle: {
-              backgroundColor: '#131a24',
-              borderTopColor: '#1f2a3b',
+              backgroundColor: '#1a1a1a',
+              borderTopColor: '#333333',
             },
           }}
         >
-          <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen name="Explore" component={ExploreScreen} />
-          <Tab.Screen name="My List" component={MyListScreen} />
-          <Tab.Screen name="Profile" component={ProfileScreen} />
+          <Tab.Screen 
+            name="Ana Sayfa" 
+            component={HomeStack}
+            options={{
+              tabBarIcon: () => <Text style={styles.tabIcon}>🏠</Text>,
+            }}
+          />
+          <Tab.Screen 
+            name="Listem" 
+            component={MyListScreen}
+            options={{
+              tabBarIcon: () => <Text style={styles.tabIcon}>📋</Text>,
+            }}
+          />
+          <Tab.Screen 
+            name="Profil" 
+            component={ProfileScreen}
+            options={{
+              tabBarIcon: () => <Text style={styles.tabIcon}>👤</Text>,
+            }}
+          />
         </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
@@ -87,7 +120,17 @@ const styles = StyleSheet.create({
   },
   placeholder: {
     flex: 1,
-    backgroundColor: '#0b0f17',
+    backgroundColor: '#0a0a0a',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  placeholderText: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: '600',
+  },
+  tabIcon: {
+    fontSize: 20,
   },
 });
 
